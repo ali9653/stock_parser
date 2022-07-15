@@ -19,7 +19,7 @@ class HomeController extends GetxController {
     super.onInit();
   }
 
-  void getStocks() async {
+  Future<void> getStocks() async {
     isLoading.value = true;
     var stocks = await StocksAPI.fetchStocks();
     stocksList.assignAll(stocks);

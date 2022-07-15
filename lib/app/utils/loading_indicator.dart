@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:stock_parser/app/utils/keys.dart';
 
 Widget circularIndicator(double hw, double sw, Color color) {
   return Center(
@@ -8,6 +9,7 @@ Widget circularIndicator(double hw, double sw, Color color) {
           width: hw,
           child: Center(
               child: CircularProgressIndicator(
+            key: AppKeys.loadingIndicatorKey,
             valueColor: AlwaysStoppedAnimation<Color>(color),
             strokeWidth: sw,
           ))));

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:stock_parser/app/modules/home/controllers/home_controller.dart';
+import 'package:stock_parser/app/utils/keys.dart';
 import 'package:stock_parser/app/utils/padding_utils.dart';
 import 'package:stock_parser/app/widgets/custom_appBar.dart';
 import 'package:stock_parser/app/widgets/rich_text_criteria_widget.dart';
@@ -27,6 +28,7 @@ class DetailedStockView extends GetView<HomeController> {
             DetailedStockTitle(stock: stock),
             Expanded(
               child: ListView.separated(
+                key: AppKeys.detailedStocksListKey,
                 itemCount: stock.criteria!.length,
                 itemBuilder: (context, index) {
                   var criteria = stock.criteria![index];

@@ -9,6 +9,7 @@ class StocksAPI {
     var response = await http.get(url);
     if (response.statusCode == 200) {
       List<StockModel> stocks = stockModelFromJson(response.body);
+      print(stocks);
       return stocks;
     } else {
       return <StockModel>[];
