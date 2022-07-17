@@ -1,8 +1,11 @@
+import 'dart:convert';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:stock_parser/app/modules/home/views/detailed_variable_page.dart';
+import 'package:stock_parser/app/services/mock_data.dart';
 import 'package:stock_parser/app/utils/color_utils.dart';
 import 'package:stock_parser/app/utils/text_style_utils.dart';
 
@@ -15,6 +18,7 @@ class HomeController extends GetxController {
 
   @override
   void onInit() {
+    // comment this while testing
     getStocks();
     super.onInit();
   }
@@ -23,6 +27,12 @@ class HomeController extends GetxController {
     isLoading.value = true;
     var stocks = await StocksAPI.fetchStocks();
     stocksList.assignAll(stocks);
+    isLoading.value = false;
+  }
+
+  void getMockStocks() {
+    isLoading.value = true;
+    stocksList.assignAll(MockData().getMockStocks());
     isLoading.value = false;
   }
 

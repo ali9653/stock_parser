@@ -5,6 +5,7 @@ import 'package:stock_parser/app/utils/dimensions.dart';
 import 'package:stock_parser/app/widgets/custom_appBar.dart';
 import 'package:stock_parser/app/widgets/dotted_line_separation.dart';
 import '../../../utils/color_utils.dart';
+import '../../../utils/keys.dart';
 import '../../../utils/padding_utils.dart';
 import '../../../utils/text_style_utils.dart';
 
@@ -36,6 +37,7 @@ class ValueTypeVariable extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.separated(
+        key: AppKeys.variableValuesListKey,
         itemCount: commonKey.values!.length,
         itemBuilder: (context, index) {
           // sort the values in ascending order
@@ -104,6 +106,7 @@ class IndicatorTypeVariable extends StatelessWidget {
                     ),
                   ),
                   child: TextFormField(
+                    key: AppKeys.indicatorVariableTextFieldKey,
                     initialValue: commonKey.defaultValue!.toString(),
                     textAlign: TextAlign.left,
                     inputFormatters: [

@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:stock_parser/app/modules/home/controllers/home_controller.dart';
 import 'package:stock_parser/app/modules/home/views/detailed_stock_view.dart';
 import 'package:stock_parser/app/modules/home/views/home_view.dart';
+import 'package:stock_parser/app/utils/color_utils.dart';
 import 'package:stock_parser/app/utils/keys.dart';
 import 'package:stock_parser/app/widgets/dotted_line_separation.dart';
 import 'package:stock_parser/app/widgets/stock_card.dart';
@@ -21,10 +22,18 @@ main() {
         ));
   }
 
-  setUpAll(() async {
+  // check if String is "green" return Colors.green else return Colors.red
+  Color checkIfColorIsGreen(String color) {
+    if (color == "green") {
+      return AppColors.kGreenColor;
+    } else {
+      return AppColors.kRedColor;
+    }
+  }
+
+  setUpAll(() {
     controller = Get.put(HomeController());
-    HttpOverrides.global = null;
-    await controller.getStocks();
+    controller.getMockStocks();
   });
 
   // check if stocks data is rendered when api returns data
@@ -41,6 +50,8 @@ main() {
     for (var element in controller.stocksList) {
       expect(find.text(element.name!), findsWidgets);
       expect(find.text(element.tag!), findsWidgets);
+      //check if color is green for bullish and red for bearish
+      expect(((tester.firstWidget(find.text(element.tag!)) as Text).style)!.color, checkIfColorIsGreen(element.color!));
     }
   });
 
