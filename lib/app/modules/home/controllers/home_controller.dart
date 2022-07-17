@@ -1,6 +1,3 @@
-import 'dart:convert';
-
-import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -18,7 +15,7 @@ class HomeController extends GetxController {
 
   @override
   void onInit() {
-    // comment this while testing
+    // comment this  api call while testing
     getStocks();
     super.onInit();
   }
@@ -31,9 +28,7 @@ class HomeController extends GetxController {
   }
 
   void getMockStocks() {
-    isLoading.value = true;
     stocksList.assignAll(MockData().getMockStocks());
-    isLoading.value = false;
   }
 
   Color subtitleColor(StockModel stock) {
